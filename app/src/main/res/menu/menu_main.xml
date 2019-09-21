@@ -1,0 +1,35 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.androidlabs.MainActivity">
+
+    <group
+        android:id="@+id/Menu_group">
+
+        <item
+            android:id="@+id/action_launch_lab_1"
+            android:orderInCategory="100"
+            android:title="@string/action_launch_lab_1"
+            app:showAsAction="never" />
+
+        <item
+            android:id="@+id/action_launch_lab_2"
+            android:orderInCategory="100"
+            android:title="@string/action_launch_lab_2"
+            app:showAsAction="never" />
+
+        <item
+            android:id="@+id/action_launch_lab_3"
+            android:orderInCategory="100"
+            android:title="@string/action_launch_lab_3"
+            app:showAsAction="never" />
+
+        <item
+            android:id="@+id/action_exit"
+            android:orderInCategory="100"
+            android:title="@string/action_exit"
+            app:showAsAction="never" />
+
+    </group>
+
+</menu>
