@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -94,22 +95,11 @@ class Calc {
 
 };
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity {
 
     private Fragment_Lab1 Fragment_Lab1;
-
-    TextView Title;
-    EditText InputText;
-    TextView Procent_TextView;
-    SeekBar Procent_seekBar;
-    TextView Tip_TextView_Title;
-    TextView Tip_TextView;
-    TextView Total_TextView_Title;
-    TextView Total_TextView;
-
-    int Procent_Number = 0;
-
-    Button Result_Button;
+    private Fragment_Lab2 Fragment_Lab2;
+    private Fragment_Lab3 Fragment_Lab3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -119,98 +109,59 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        // Инициализируем все фрагменты
         Fragment_Lab1 = new Fragment_Lab1();
+        Fragment_Lab2 = new Fragment_Lab2();
+        Fragment_Lab3 = new Fragment_Lab3();
 
-        Title = (TextView) findViewById (R.id.Title);
-
-        InputText = (EditText) findViewById (R.id.et_amount);
-
-        Procent_TextView = (TextView) findViewById (R.id.procent_TextView);
-        Procent_TextView.setText("0%");
-
-        Procent_seekBar  = (SeekBar) findViewById(R.id.procent_seekBar);
-
-        Tip_TextView_Title = (TextView) findViewById (R.id.Tip_TextView_Title);
-
-        Tip_TextView = (TextView) findViewById (R.id.Tip_TextView);
-
-        Total_TextView_Title = (TextView) findViewById (R.id.total_TextView_Title);
-
-        Total_TextView = (TextView) findViewById (R.id.total_TextView);
-
-        Result_Button = (Button) findViewById (R.id.result_button);
-
-        Result_Button.setOnClickListener (this);
-
-        Procent_seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-
-                Procent_Number = progress;
-                Procent_TextView.setText(String.valueOf(progress) + "%");
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
-        });
-
-    }
-
-    @Override
-    public void onClick (View v) {
-
-        Double billAmount = Double.parseDouble (InputText.getText().toString());
-        double percent = new Double (Procent_Number);
-
-        Calc tipCalc = new Calc(billAmount, percent);
-
-        Tip_TextView.setText("" + tipCalc.calculateTip(tipCalc.getBillAmount(), tipCalc.getPercent()));
-        Total_TextView.setText ("" + tipCalc.calculateTotal(tipCalc.getBillAmount(), tipCalc.getPercent()));
-
+        // При создании активности, сразу же включаем первый фрагмент
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.content, Fragment_Lab1);
+        ft.commit();
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
-
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected (@NonNull MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        switch (id) {
+        // Фрагменты работают по следующему принципу. Должно быть какое-то место, куда они будут вставляться
+        // и каждый раз при нажатии кнопки в меню, один фрагмент заменяет другой.
+        // Твоя ошибка была в том что ты не создал место куда они будут вставлсятья, загляни в activity_main.xml,
+        // там я создал LinearLayout, а в него поместил меню и FrameLayout. FrameLayout это как раз то, куда
+        // вставляются фрагменты, метод replace принимает парамерты, перый из них это куда вставить фрагмент,
+        // а второй какой вставить фрагмент. Соответсвенно у FrameLayout, я задал id=content, и теперь он зменяет
+        // содержимое FrameLayout на фрагмент, который укажешь в параметрах, если что у меня на гитхабе есть пример как работать с этим
+        switch (item.getItemId()) {
 
             case R.id.action_launch_lab_1:
                 ft.replace(R.id.content, Fragment_Lab1);
                 ft.commit();
-                break;
+                return true;
 
             case R.id.action_launch_lab_2:
-                break;
+                ft.replace(R.id.content, Fragment_Lab2);
+                ft.commit();
+                return true;
 
             case R.id.action_launch_lab_3:
-                break;
+                ft.replace(R.id.content, Fragment_Lab3);
+                ft.commit();
+                return true;
 
             case R.id.action_exit:
                 finish ();
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
 
         }
-
-        return super.onOptionsItemSelected(item);
     }
 }
