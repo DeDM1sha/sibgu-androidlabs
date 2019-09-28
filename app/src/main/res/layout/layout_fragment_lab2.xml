@@ -6,9 +6,121 @@
     tools:context=".Fragment_Lab2">
 
     <!-- TODO: Update blank fragment layout -->
+
     <TextView
+        android:id="@+id/Title_TextVew"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="false"
+        android:layout_marginLeft="50pt"
+        android:text="Заказ на печать"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/ListsCount_TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="29dp"
+        android:clickable="false"
+        android:text="Количество страниц:"
+        android:layout_marginTop="30pt"
+        android:layout_marginLeft="5pt"
+        android:textStyle="bold"
+        android:textSize="15sp" />
+
+    <EditText
+        android:id="@+id/ListsCount_EditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Enter Amount"
+        android:inputType="numberDecimal"
+        android:layout_marginTop="25pt"
+        android:layout_marginLeft="160dp"/>
+
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="ВТОРАЯ ЛАБА" />
+        android:layout_height="wrap_content">
+
+        <RadioButton
+            android:id="@+id/A4_RadioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="A4"
+            android:textSize="15sp"
+            android:layout_marginTop="60pt"
+            android:layout_marginLeft="20pt"/>
+
+        <RadioButton
+            android:id="@+id/A3_RadioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="A3"
+            android:textSize="15sp"
+            android:layout_marginTop="5pt"
+            android:layout_marginLeft="20pt" />
+
+        <RadioButton
+            android:id="@+id/A1_RadioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="A1"
+            android:textSize="15sp"
+            android:layout_marginTop="5pt"
+            android:layout_marginLeft="20pt" />
+
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/A4_TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="false"
+        android:text="10 руб./стр."
+        android:textSize="20sp"
+        android:layout_marginTop="60pt"
+        android:layout_marginLeft="60pt"/>
+
+    <TextView
+        android:id="@+id/A3_TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="false"
+        android:text="30 руб./стр."
+        android:textSize="20sp"
+        android:layout_marginTop="80pt"
+        android:layout_marginLeft="60pt"/>
+
+
+    <TextView
+        android:id="@+id/A1_TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="false"
+        android:text="100 руб./стр."
+        android:textSize="20sp"
+        android:layout_marginTop="100pt"
+        android:layout_marginLeft="60pt"/>
+
+    <Button
+        android:id="@+id/Result_Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="OK"
+        android:layout_marginTop="130pt"
+        android:layout_marginLeft="65pt"/>
+
+    <TextView
+        android:id="@+id/Result_TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:clickable="false"
+        android:layout_marginTop="170pt"
+        android:layout_marginLeft="10pt"
+        android:textStyle="bold"
+        android:textSize="18dp"/>
 
 </FrameLayout>

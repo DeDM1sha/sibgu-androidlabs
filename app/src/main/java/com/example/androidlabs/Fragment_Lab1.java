@@ -14,6 +14,83 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+class Calc {
+
+    private double billAmount;
+    private double percent;
+    private double tip;
+    private double total;
+
+    Calc (double Amount, double per) {
+
+        billAmount = Amount;
+        percent = per;
+        tip = 0.0;
+        total = 0.0;
+
+    }
+
+    public double calculateTip(double billAmount, double percent) {
+
+        return billAmount*percent/100;
+
+    }
+
+    public double calculateTotal(double billAmount, double percent) {
+
+        return billAmount+(billAmount*percent/100);
+
+    }
+
+    public double getBillAmount() {
+
+        return billAmount;
+
+    }
+
+    public void setBillAmount(double billAmount) {
+
+        this.billAmount = billAmount;
+
+    }
+
+    public double getPercent() {
+
+        return percent;
+
+    }
+
+    public void setPercent(double percent) {
+
+        this.percent = percent;
+
+    }
+
+    public double getTip() {
+
+        return tip;
+
+    }
+
+    public void setTip(double tip) {
+
+        this.tip = tip;
+
+    }
+
+    public double getTotal() {
+
+        return total;
+
+    }
+
+    public void setTotal(double total) {
+
+        this.total = total;
+
+    }
+
+};
 
 /**
  * A simple {@link Fragment} subclass.
